@@ -1,5 +1,7 @@
 "use server";
 
+import { ArticleType } from "@/app/lib/definitions";
+
 const BASE_URL = `https://api.nytimes.com/svc/search/v2`;
 
 export async function getAllTravelAviationArticles() {
@@ -12,6 +14,20 @@ export async function getAllTravelAviationArticles() {
     }
     return await response.json();
   } catch (err) {
-    throw Error(`Error occurred: ${err}`);
+    throw Error(`Failed to getAllTravelAviationArticles`, err as Error);
+  }
+}
+
+export async function getTravelAviationArticleById(id: string) {
+  try {
+    const { response } = await getAllTravelAviationArticles();
+
+    console.log(response);
+
+    return response.docs.find((article: ArticleType) =>
+      article.uri.includes(id)
+    );
+  } catch (err) {
+    throw Error(`Failed to getTravelAviationArticleById`, err as Error);
   }
 }
