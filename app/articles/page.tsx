@@ -1,7 +1,7 @@
-import { getAllTravelAviationArticles } from "./lib/actions";
-import { ArticleType } from "./lib/definitions";
+import { getAllTravelAviationArticles } from "@/app/lib/actions";
+import { ArticleType } from "@/app/lib/definitions";
 
-export default async function Home() {
+export default async function Articles() {
   const { response: articles } = await getAllTravelAviationArticles();
 
   return (
