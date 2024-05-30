@@ -22,8 +22,6 @@ export async function getTravelAviationArticleById(id: string) {
   try {
     const { response } = await getAllTravelAviationArticles();
 
-    console.log(response);
-
     return response.docs.find((article: ArticleType) =>
       article.uri.includes(id)
     );
