@@ -2,6 +2,7 @@ import { getAllTravelAviationArticles } from "@/app/lib/actions";
 import { ArticleType } from "@/app/lib/definitions";
 import Link from "next/link";
 import { parseId } from "@/app/lib/utilities";
+import Preview from "@/app/ui/preview";
 
 export default async function Articles() {
   const { response: articles } = await getAllTravelAviationArticles();
@@ -13,10 +14,7 @@ export default async function Articles() {
           {articles.docs.map((article: ArticleType) => (
             <li key={article.uri}>
               <Link href={`/articles/${parseId(article.uri)}`}>
-                <h2>{article.headline.main}</h2>
-                <p>{article.byline.original}</p>
-                <p>{article.pub_date}</p>
-                <p>{article.snippet}</p>
+                <Preview article={article} />
               </Link>
             </li>
           ))}
